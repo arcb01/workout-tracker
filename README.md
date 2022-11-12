@@ -1,2 +1,2 @@
-# workout-tracker
+# Workout tracker
 Dashboard for visualizing workout progress
