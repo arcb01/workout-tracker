@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 from modules.plots import *
 import time
 
-path = r"D:\V\Projects\Python\Data Analysis\Notion gym workout\dashboard-v3\workout-tracker"
+#path = r"D:\V\Projects\Python\Data Analysis\Notion gym workout\dashboard-v3\workout-tracker"
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
@@ -14,9 +14,9 @@ with open('style.css') as f:
 st.header('Workout dashboard')
 
 # Row B
-workout_freq = pd.read_csv(path + '/data/processed/workout_freq.csv')
-workout_perf = pd.read_csv(path + '/data/processed/workout_performance.csv')
-workout_consist = pd.read_csv(path + '/data/processed/workout_consistency.csv')
+workout_freq = pd.read_csv('./data/processed/workout_freq.csv')
+workout_perf = pd.read_csv('./data/processed/workout_performance.csv')
+workout_consist = pd.read_csv('./data/processed/workout_consistency.csv')
 
 c1, c2 = st.columns((7,3)) # Columns
 
