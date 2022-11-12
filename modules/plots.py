@@ -1,10 +1,4 @@
-import pandas as pd
 import plotly.graph_objects as go
-from ipywidgets import widgets
-import seaborn as sns
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 
 
 def donut_chart(data):
