@@ -1,3 +1,3 @@
 # Workout tracker
 Dashboard for visualizing workout progress
-[This is an external link to genome.gov](https://www.genome.gov/)
+[Open Workout Dashboard](https://arcb01-workout-tracker-workout-dashboard-6u1ewl.streamlit.app/)
