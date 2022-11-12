@@ -3,3 +3,4 @@ plotly==5.9.0
 numpy==1.19.5
 requests==2.25.1
 streamlit==1.14.0
+ipywidgets==7.6.5
