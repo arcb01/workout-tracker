@@ -4,6 +4,7 @@ Dashboard for visualizing workout progress
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/13052324/201627115-3e7976da-a8cc-4211-be73-7ae31d08f065.jpg" width="700" height="400">
+<em>"Diagram"</em>
 </p>
 
 
