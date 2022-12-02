@@ -17,6 +17,7 @@ st.header('Workout dashboard')
 workout_freq = pd.read_csv('./data/processed/workout_freq.csv')
 workout_perf = pd.read_csv('./data/processed/workout_performance.csv')
 workout_consist = pd.read_csv('./data/processed/workout_consistency.csv')
+avg_weekly_n_sets = pd.read_csv('./data/processed/avg_wrkt_sets_per_week.csv')
 
 c1, c2 = st.columns((7,3)) # Columns
 
@@ -25,6 +26,8 @@ with c1:
     st.markdown('### Exercise performance')
     # Create select box for filtering data before plotting
     exercise = st.selectbox('Select exercise', options=workout_perf["Exercise"].unique())
+    avg_n_sets_ex = avg_weekly_n_sets[avg_weekly_n_sets["Exercise"] == exercise]["AVG"].values[0]
+    st.write(f'Average number of sets per week: {avg_n_sets_ex}')
     # PLot bar chart
     plot = bar_chart(workout_perf, exercise)
     st.plotly_chart(plot, use_container_width=True)

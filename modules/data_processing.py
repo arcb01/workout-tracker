@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import zipfile
 import seaborn as sns
 import pickle
+import datetime
 import plotly.graph_objects as go
 from ipywidgets import widgets
 from workout_class import Workout
@@ -268,6 +269,34 @@ df_wrkt_freq = pd.DataFrame(list(zip(names, freqs)),
                             columns =['Type of workout', 'Frequency'])
 
 
+def avg_wrkt_sets_per_week(df, exercise):
+    """
+    Returns a dataframe with the average number of sets 
+    per week for a given exercise
+    """
+
+    n_wrkouts = df.shape[0]
+    avg_sets_per_week = lambda n_sets : (n_sets  / n_wrkouts) * 4
+    dic_sets = {ex : 0 for ex in list_exercises}
+    for ex in list_exercises:
+        for w_obj in wrkts_list:
+            w_df = w_obj.wrkt_df
+            if not w_df.empty and ex in w_df["Exercise"].values:
+                n_sets = len(w_df[w_df["Exercise"] == ex]["Sets & Reps"].values[0])
+                dic_sets[ex] += n_sets
+
+    dic_avg_sets_per_week = {ex : round(avg_sets_per_week(total_n_sets), 2)
+                                for ex, total_n_sets in dic_sets.items()}
+    
+    # convert dict to df
+    df_avg_sets_per_week = pd.DataFrame.from_dict({"Exercise" : list(dic_avg_sets_per_week.keys()), 
+                            "AVG" : list(dic_avg_sets_per_week.values())}, orient='columns')
+
+    return df_avg_sets_per_week
+
+
+df_avg_wrkt_sets_per_week = avg_wrkt_sets_per_week(all_wrkts_df, "Dips")
+
 # # Saving
 
 # In[15]:
@@ -282,3 +311,5 @@ df_consistency.to_csv('./data/processed/workout_consistency.csv')
 # DF showing performance for every exercise by month
 df_ex_perf.to_csv('./data/processed/workout_performance.csv')
 
+# DF showing average number of sets per week for every exercise
+df_avg_wrkt_sets_per_week.to_csv("./data/processed/avg_wrkt_sets_per_week.csv")
