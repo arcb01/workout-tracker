@@ -27,7 +27,7 @@ with c1:
     # Create select box for filtering data before plotting
     exercise = st.selectbox('Select exercise', options=workout_perf["Exercise"].unique())
     avg_n_sets_ex = avg_weekly_n_sets[avg_weekly_n_sets["Exercise"] == exercise]["AVG"].values[0]
-    st.write(f'Average number of sets per week: {avg_n_sets_ex}')
+    st.write(f'Average number of sets in the last week = **{avg_n_sets_ex}**')
     # PLot bar chart
     plot = bar_chart(workout_perf, exercise)
     st.plotly_chart(plot, use_container_width=True)

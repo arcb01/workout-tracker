@@ -8,9 +8,9 @@ import pandas as pd
 import json
 import os
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import zipfile
-import seaborn as sns
+#import seaborn as sns
 import pickle
 import datetime
 import plotly.graph_objects as go
@@ -269,14 +269,18 @@ df_wrkt_freq = pd.DataFrame(list(zip(names, freqs)),
                             columns =['Type of workout', 'Frequency'])
 
 
-def avg_wrkt_sets_per_week(df, exercise):
+def avg_wrkt_sets_per_week(df, list_exercises, wrkts_list):
     """
     Returns a dataframe with the average number of sets 
-    per week for a given exercise
+    per week for a given exercise of the last week.
     """
 
+    # Take elements from the last weeks
+    df = df.tail(6)
+    wrkts_list = wrkts_list[:6]
+
     n_wrkouts = df.shape[0]
-    avg_sets_per_week = lambda n_sets : (n_sets  / n_wrkouts) * 4
+    avg_sets_per_week = lambda n_sets : (n_sets  / n_wrkouts) * 3
     dic_sets = {ex : 0 for ex in list_exercises}
     for ex in list_exercises:
         for w_obj in wrkts_list:
@@ -295,7 +299,7 @@ def avg_wrkt_sets_per_week(df, exercise):
     return df_avg_sets_per_week
 
 
-df_avg_wrkt_sets_per_week = avg_wrkt_sets_per_week(all_wrkts_df, "Dips")
+df_avg_wrkt_sets_per_week = avg_wrkt_sets_per_week(all_wrkts_df, list_exercises, wrkts_list)
 
 # # Saving
 

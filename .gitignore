@@ -130,4 +130,4 @@ dmypy.json
 /modules/run_retriever.py
 run.bat
 data_processing.ipynb
-wenv/
+wrkt_env/
