@@ -1,4 +1,4 @@
-# Workout tracker
+# A tool for tracking workout progress
 
 I use Notion as a database to store the workout data of each session, including the number of sets and repetitions, the intensity of the workout, and other important metrics. I created this custom dashboard to visualize this data in an easy-to-understand graphical way, allowing me to easily track my progress over time and make changes to my routine accordingly. 
 
