@@ -94,4 +94,6 @@ def generate_workouts_data():
 
     print("Succesfully workouts data generated.")
 
-generate_workouts_data()
+
+if __name__ == "__main__":
+    generate_workouts_data()
