@@ -23,14 +23,16 @@ def read_database(database_id: str, headers: dict):
 
 
 def read_page(page_id, headers):
-    #if not os.path.isfile(f"./data/pages/page_{page_num}.json"):
+    """
+    Reads a Notion page and returns a JSON file.
+    """
+
     url = f"https://api.notion.com/v1/blocks/{page_id}/children?page_size=100"
     res = requests.request("GET", url, headers=headers)
     print("read_page: ", res.status_code)
 
     data = res.json()
-    #with open(f"./data/pages/page_{page_num}.json", "w", encoding="utf8") as f:
-        #json.dump(data, f, ensure_ascii=False)
+
     return data
 
 
