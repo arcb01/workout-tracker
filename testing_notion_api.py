@@ -88,11 +88,22 @@ def generate_workouts_data():
         all_workouts["WRKT_SSNS"].append(workout_formatter(workout))
         all_workouts["EXERCISES"].append(exercise_formatter(workout))
 
-    # Save the data to a json file
-    with open("./data/workouts_data.json", "w", encoding="utf8") as f:
-        json.dump(all_workouts, f, ensure_ascii=False)
+    # Save the workout sessions collection
+    with open("./data/wrkt_ssn_data.json", "w", encoding="utf8") as f:
+        json.dump(all_workouts["WRKT_SSNS"], f, ensure_ascii=False)
+
+    # Save the exercises collection
+    # FIXME: Not sure if this is necessary
+    unpacked_exercises = [item for sublist in all_workouts["EXERCISES"] for item in sublist]
+    with open("./data/ex_data.json", "w", encoding="utf8") as f:
+        json.dump(unpacked_exercises, f, ensure_ascii=False)
 
     print("Succesfully workouts data generated.")
+
+
+
+
+
 
 
 if __name__ == "__main__":
