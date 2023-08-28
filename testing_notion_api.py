@@ -27,13 +27,12 @@ def workout_formatter(workout : dict):
     Formats the workout data to a more legible structure.
     """
 
-    workout_id = workout["id"]
     workout_date = workout["properties"]["Date"]["date"]["start"]
     workout_intensity = workout["properties"]["Intensity"]["select"]["name"]
     workout_location = workout["properties"]["Location"]["select"]["name"]
     workout_duration = workout["properties"]["Duration"]["number"]
 
-    return {"w_id" : workout_id,
+    return {"w_id" : workout["id"], # FIXME: Not sure if it is necessary now
             "date" : workout_date,
             "intensity" : workout_intensity,
             "location" : workout_location,
@@ -60,8 +59,7 @@ def exercise_formatter(workout : dict):
         workout_ex_sets = workout_ex_db[n]["properties"]["Sets"]["number"]
         workout_ex_reps = workout_ex_db[n]["properties"]["Reps"]["number"]
         workout_ex_weight = workout_ex_db[n]["properties"]["Weight"]["number"]
-        workout_ex_data = { "w_id" : workout["id"],
-                            "ex_id" : workout_ex_id,
+        workout_ex_data = { "w_id" : workout["id"], # FIXME: Not sure if it is necessary now
                             "ex_name" : workout_ex_name,
                             "sets" : workout_ex_sets,
                             "reps" : workout_ex_reps,
@@ -99,10 +97,6 @@ def generate_workouts_data():
         json.dump(unpacked_exercises, f, ensure_ascii=False)
 
     print("Succesfully workouts data generated.")
-
-
-
-
 
 
 
