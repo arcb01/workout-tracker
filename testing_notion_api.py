@@ -9,20 +9,6 @@ from pymongo import MongoClient
 from mongo_utils import *
 
 
-# ------ Load environment variables ------
-
-load_dotenv()
-config = dotenv_values("./.env/.env")
-
-NOTION_TOKEN = config["NOTION_TOKEN"]
-DATABASE_ID = "3badcbc40d434e00835bd09930f4a801"
-
-headers = {
-    "Authorization": "Bearer " + NOTION_TOKEN,
-    "Content-Type": "application/json",
-    "Notion-Version": "2022-06-28",
-}
-
 # ------------------ Data preprocessing ------------------
 
 def workout_formatter(workout : dict):
@@ -63,7 +49,6 @@ def exercise_formatter(workout : dict):
         workout_ex_reps = workout_ex_db[n]["properties"]["Reps"]["number"]
         workout_ex_weight = workout_ex_db[n]["properties"]["Weight"]["number"]
         workout_ex_data = { 
-                            "w_id" : "", # TBA
                             "name" : workout_ex_name,
                             "sets" : workout_ex_sets,
                             "reps" : workout_ex_reps,
@@ -94,7 +79,8 @@ def generate_workouts_data():
 
 def insert_data_db(db):
 
-    # FIXME: Not sure
+    # TODO: Updation phase: checking for duplicates
+    # FIXME: Validation schema not working
 
     w_data = generate_workouts_data()
 
@@ -103,26 +89,27 @@ def insert_data_db(db):
 
     for wokrout in w_data:
         workout_exercises = wokrout["exercises"]
-        for exercise in workout_exercises:
-            # Empty the workout exercises list
-            wokrout["exercises"] = []
-            # Add the workout id to the exercise
-            workout_id = wsns_collection.insert_one(wokrout).inserted_id
-            exercise["w_id"] = workout_id
-
-            # Check if exercise already exists
-            existing_exercise = exs_collection.find_one(exercise)
-            if not existing_exercise:
-                # Insert the exercise
-                exs_collection.insert_one(exercise)
-                # update the workout document apending the exercise id to the exercises list
-                wsns_collection.update_one({"_id": workout_id}, {"$push": {"exercises": exercise["_id"]}})
-
-
-        
-
+        # Insert exercises into exs collection
+        exs_ids = exs_collection.insert_many(workout_exercises)
+        wokrout["exercises"].clear()
+        # Insert exs ids into workout exercises
+        wokrout["exercises"] = exs_ids.inserted_ids
+        wsns_collection.insert_one(wokrout)
 
 if __name__ == "__main__":
+
+    # ------ Load environment variables ------
+    load_dotenv()
+    config = dotenv_values("./.env/.env")
+
+    NOTION_TOKEN = config["NOTION_TOKEN"]
+    DATABASE_ID = "3badcbc40d434e00835bd09930f4a801"
+
+    headers = {
+        "Authorization": "Bearer " + NOTION_TOKEN,
+        "Content-Type": "application/json",
+        "Notion-Version": "2022-06-28",
+    }
 
     # Database connection
     client = MongoClient("mongodb://192.168.0.32:2717/")
@@ -132,8 +119,8 @@ if __name__ == "__main__":
 
     print(exs_collection.count_documents({}))
     print(wsns_collection.count_documents({}))
-    # 1. Create collection + validation schema
 
+    # 1. Create collection + validation schema
     create_collection(db, "exs")
     create_collection(db, "wsns")
 
@@ -145,6 +132,6 @@ if __name__ == "__main__":
 
     # 3. Show data
     show_collection(wsns_collection)
-    show_collection(exs_collection)
+    #show_collection(exs_collection)
 
     client.close()
