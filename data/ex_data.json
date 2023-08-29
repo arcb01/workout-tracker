@@ -1,1 +1,114 @@
-[{"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "2c5bb06a-18e1-4fd1-a1de-610743dd4871", "ex_name": "Row", "sets": null, "reps": null, "weight": null}, {"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "82d84a94-6357-4e00-b85f-70fa5a43cdd4", "ex_name": "DB floor press", "sets": 3, "reps": 18, "weight": 100}, {"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "b5dde1ef-e984-4aa1-9046-01a3c52ea34d", "ex_name": "Squat", "sets": null, "reps": null, "weight": null}, {"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "d88e2ab8-d74d-4d81-9266-72f42f5a4442", "ex_name": "DB landmine press", "sets": null, "reps": null, "weight": null}, {"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "e567d181-20eb-4bd0-84d2-d94ba0459920", "ex_name": "Farmer walks", "sets": null, "reps": null, "weight": null}, {"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "e5748aaa-eeb9-4f0e-a423-c8ade8c3ac63", "ex_name": "Shrugs", "sets": null, "reps": null, "weight": null}, {"w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814", "ex_id": "f4cb81f2-9cab-4da1-8fa3-918e9790c66d", "ex_name": "KB bottom-up hold", "sets": null, "reps": null, "weight": null}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "0355af1c-caac-4753-a2a0-d70d94d8d4b6", "ex_name": "Squat", "sets": null, "reps": null, "weight": null}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "03dab649-1eb0-4b0a-b397-1c97379adb80", "ex_name": "KB bottom-up hold", "sets": null, "reps": null, "weight": null}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "47e602af-21f0-4074-b257-98e432632432", "ex_name": "DB floor press", "sets": 3, "reps": 18, "weight": 32}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "ea4bef5d-07cc-4566-a1b8-a987caee6d9a", "ex_name": "Farmer walks", "sets": null, "reps": null, "weight": null}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "2dc29af9-47c0-46f8-b1dc-ff5b7c823893", "ex_name": "Row", "sets": null, "reps": null, "weight": null}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "8931f6a1-0bb7-4ace-b8e8-a3d71e6a4399", "ex_name": "DB landmine press", "sets": null, "reps": null, "weight": null}, {"w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684", "ex_id": "de7386a2-4d97-4585-9d3f-1038a7746343", "ex_name": "Shrugs", "sets": null, "reps": null, "weight": null}]
+[
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "2c5bb06a-18e1-4fd1-a1de-610743dd4871",
+        "ex_name": "Row",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "82d84a94-6357-4e00-b85f-70fa5a43cdd4",
+        "ex_name": "DB floor press",
+        "sets": 3,
+        "reps": 18,
+        "weight": 100
+    },
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "b5dde1ef-e984-4aa1-9046-01a3c52ea34d",
+        "ex_name": "Squat",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "d88e2ab8-d74d-4d81-9266-72f42f5a4442",
+        "ex_name": "DB landmine press",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "e567d181-20eb-4bd0-84d2-d94ba0459920",
+        "ex_name": "Farmer walks",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "e5748aaa-eeb9-4f0e-a423-c8ade8c3ac63",
+        "ex_name": "Shrugs",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "ee0b2892-7a19-4d2a-95ea-b7002bb9a814",
+        "ex_id": "f4cb81f2-9cab-4da1-8fa3-918e9790c66d",
+        "ex_name": "KB bottom-up hold",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "0355af1c-caac-4753-a2a0-d70d94d8d4b6",
+        "ex_name": "Squat",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "03dab649-1eb0-4b0a-b397-1c97379adb80",
+        "ex_name": "KB bottom-up hold",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "47e602af-21f0-4074-b257-98e432632432",
+        "ex_name": "DB floor press",
+        "sets": 3,
+        "reps": 18,
+        "weight": 32
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "ea4bef5d-07cc-4566-a1b8-a987caee6d9a",
+        "ex_name": "Farmer walks",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "2dc29af9-47c0-46f8-b1dc-ff5b7c823893",
+        "ex_name": "Row",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "8931f6a1-0bb7-4ace-b8e8-a3d71e6a4399",
+        "ex_name": "DB landmine press",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    },
+    {
+        "w_id": "7bae1559-7b5d-4737-a362-5b62b62aa684",
+        "ex_id": "de7386a2-4d97-4585-9d3f-1038a7746343",
+        "ex_name": "Shrugs",
+        "sets": null,
+        "reps": null,
+        "weight": null
+    }
+]

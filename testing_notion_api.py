@@ -3,7 +3,10 @@ import pprint
 import os 
 import random
 import string
+from datetime import datetime
 from dotenv import load_dotenv, dotenv_values
+from pymongo import MongoClient
+from mongo_utils import *
 
 
 # ------ Load environment variables ------
@@ -32,8 +35,8 @@ def workout_formatter(workout : dict):
     workout_location = workout["properties"]["Location"]["select"]["name"]
     workout_duration = workout["properties"]["Duration"]["number"]
 
-    return {
-            "date" : workout_date,
+    return { 
+            "date" : datetime.strptime(workout_date, '%Y-%m-%d'),
             "intensity" : workout_intensity,
             "location" : workout_location,
             "duration" : workout_duration,
@@ -60,6 +63,7 @@ def exercise_formatter(workout : dict):
         workout_ex_reps = workout_ex_db[n]["properties"]["Reps"]["number"]
         workout_ex_weight = workout_ex_db[n]["properties"]["Weight"]["number"]
         workout_ex_data = { 
+                            "w_id" : "", # TBA
                             "name" : workout_ex_name,
                             "sets" : workout_ex_sets,
                             "reps" : workout_ex_reps,
@@ -72,31 +76,75 @@ def exercise_formatter(workout : dict):
 
 def generate_workouts_data():
     """
-    Generates a json file containing all the workouts data.
-    The JSON file has 2 collections: Workout Sessions and Exercises.
+    Generates all the workouts data.
     """
     
-    # FIXME: This part is not ready
-    
-    workout_ssns = []
-    exercise_list = []
+    data = []
 
     wts_db_data = read_database(DATABASE_ID, headers)["results"]
     
+    # Format each workout as well as its exercises
     for workout in wts_db_data:
-        workout_ssns.append(workout_formatter(workout))
-        exercise_list.append(exercise_formatter(workout))
-
-    data = {
-            "workout_sessions" : workout_ssns,
-            "exercises" : [item for sublist in exercise_list for item in sublist]
-            }
-
-    with open("./data/w_data.json", "w", encoding="utf8") as f:
-        json.dump(data, f, ensure_ascii=False)
+        data.append(workout_formatter(workout))
 
     print("Succesfully workouts data generated.")
 
+    return data
+
+
+def insert_data_db(db):
+
+    # FIXME: Not sure
+
+    w_data = generate_workouts_data()
+
+    wsns_collection = db["wsns"]
+    exs_collection = db["exs"]
+
+    for wokrout in w_data:
+        workout_exercises = wokrout["exercises"]
+        for exercise in workout_exercises:
+            # Empty the workout exercises list
+            wokrout["exercises"] = []
+            # Add the workout id to the exercise
+            workout_id = wsns_collection.insert_one(wokrout).inserted_id
+            exercise["w_id"] = workout_id
+
+            # Check if exercise already exists
+            existing_exercise = exs_collection.find_one(exercise)
+            if not existing_exercise:
+                # Insert the exercise
+                exs_collection.insert_one(exercise)
+                # update the workout document apending the exercise id to the exercises list
+                wsns_collection.update_one({"_id": workout_id}, {"$push": {"exercises": exercise["_id"]}})
+
+
+        
+
 
 if __name__ == "__main__":
-    generate_workouts_data()
+
+    # Database connection
+    client = MongoClient("mongodb://192.168.0.32:2717/")
+    db = client["gym"]
+    exs_collection = db["exs"]
+    wsns_collection = db["wsns"]
+
+    print(exs_collection.count_documents({}))
+    print(wsns_collection.count_documents({}))
+    # 1. Create collection + validation schema
+
+    create_collection(db, "exs")
+    create_collection(db, "wsns")
+
+    # 2. Insert data
+    insert_data_db(db)
+
+    print(exs_collection.count_documents({}))
+    print(wsns_collection.count_documents({}))
+
+    # 3. Show data
+    show_collection(wsns_collection)
+    show_collection(exs_collection)
+
+    client.close()
