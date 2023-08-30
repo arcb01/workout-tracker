@@ -1,0 +1,102 @@
+[
+    {
+        "date": "2023-08-02",
+        "intensity": "Hard",
+        "location": "Outside",
+        "duration": 65,
+        "exercises": [
+            {
+                "name": "Row",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "DB floor press",
+                "sets": 3,
+                "reps": 18,
+                "weight": 100
+            },
+            {
+                "name": "Squat",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "DB landmine press",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "Farmer walks",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "Shrugs",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "KB bottom-up hold",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            }
+        ]
+    },
+    {
+        "date": "2023-08-16",
+        "intensity": "Moderate",
+        "location": "Outside",
+        "duration": 54,
+        "exercises": [
+            {
+                "name": "Squat",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "KB bottom-up hold",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "DB floor press",
+                "sets": 3,
+                "reps": 18,
+                "weight": 32
+            },
+            {
+                "name": "Farmer walks",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "Row",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "DB landmine press",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            },
+            {
+                "name": "Shrugs",
+                "sets": null,
+                "reps": null,
+                "weight": null
+            }
+        ]
+    }
+]

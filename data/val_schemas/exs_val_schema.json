@@ -1,0 +1,28 @@
+{
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "bsonType": "string",
+          "description": "Name of the exercise"
+        },
+        "sets": {
+          "bsonType": ["int", "null"],
+          "minimum": 0,
+          "description": "Number of sets (null or non-negative integer)"
+        },
+        "reps": {
+          "bsonType": ["int", "null"],
+          "minimum": 0,
+          "description": "Number of repetitions (null or non-negative integer)"
+        },
+        "weight": {
+          "bsonType": ["double", "null"],
+          "minimum": 0,
+          "description": "Weight used (null or non-negative double)"
+        }
+      }
+    }
+  }
+  

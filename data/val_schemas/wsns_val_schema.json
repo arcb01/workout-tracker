@@ -1,0 +1,26 @@
+{
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": ["date", "intensity", "location", "duration", "exercises"],
+      "properties": {
+        "date": {
+          "bsonType": "string",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])$"
+        },
+        "intensity": {
+          "enum": ["Easy", "Moderate", "Hard"]
+        },
+        "location": {
+          "enum": ["Home", "Outside"]
+        },
+        "duration": {
+          "bsonType": "int",
+          "minimum": 0
+        },
+        "exercises": {
+          "bsonType": "array"
+        }
+      }
+    }
+  }
+  
