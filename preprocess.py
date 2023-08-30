@@ -3,6 +3,19 @@ from modules.notion_utils import *
 import json
 
 
+# Define constants: TOKEN and DATABASE_ID
+load_dotenv()
+config = dotenv_values("./.env/.env") 
+
+NOTION_TOKEN = config["NOTION_TOKEN"]
+DATABASE_ID = "3badcbc40d434e00835bd09930f4a801"
+
+HEADERS = {
+    "Authorization": "Bearer " + NOTION_TOKEN,
+    "Content-Type": "application/json",
+    "Notion-Version": "2022-06-28",
+}
+
 def get_notion_data():
     """
     Get the data from Notion database.
@@ -90,18 +103,6 @@ def preprocess():
 
 
 if __name__ == "__main__":
-    # Define TOKEN and DATABASE_ID
-    load_dotenv()
-    config = dotenv_values("./.env/.env") 
-    NOTION_TOKEN = config["NOTION_TOKEN"]
-    DATABASE_ID = "3badcbc40d434e00835bd09930f4a801"
-
-    HEADERS = {
-        "Authorization": "Bearer " + NOTION_TOKEN,
-        "Content-Type": "application/json",
-        "Notion-Version": "2022-06-28",
-    }
-
     # Run the preprocessing pipeline
     preprocess()
 
