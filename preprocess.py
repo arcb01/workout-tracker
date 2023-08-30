@@ -1,7 +1,6 @@
 from dotenv import load_dotenv, dotenv_values
 from modules.notion_utils import *
 import json
-from datetime import datetime
 
 
 def get_notion_data():
@@ -59,7 +58,7 @@ def data_formatter(workout : dict):
     exercise_data = exercise_formatter(workout)
 
     return { 
-            "date" : datetime.strptime(workout_date, '%Y-%m-%d'),
+            "date" : workout_date,
             "intensity" : workout_intensity,
             "location" : workout_location,
             "duration" : workout_duration,
@@ -84,15 +83,9 @@ def preprocess():
 
     print("Succesfully workouts data generated.")
 
-    # 3. Save it to a JSON file
-    class DTEncoder(json.JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, datetime):
-                return str(obj)
-            return json.JSONEncoder.default(self, obj)
-    
+    # 3. Save the data to a JSON file
     with open("./data/workouts_data.json", "w") as f:
-        json.dump(data, f, indent=4, cls=DTEncoder)
+        json.dump(data, f, indent=4)
 
 
 if __name__ == "__main__":
