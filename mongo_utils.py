@@ -57,7 +57,6 @@ def delete_collection(db: object, collection_name : str):
     except:
         print("Collection already deleted")
 
-
 def show_collection(collection : object):
     all_documents = collection.find()
 
