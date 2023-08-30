@@ -63,4 +63,10 @@ def show_collection(collection : object):
     for document in all_documents:
         pprint.pprint(document)
 
+def empty_database(db : object):
+    """
+    Deletes all the data in the database.
+    """
 
+    for collection in db.list_collection_names():
+        delete_collection_data(db, collection)
