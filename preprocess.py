@@ -84,6 +84,7 @@ def preprocess():
     print("Succesfully workouts data generated.")
 
     # 3. Save the data to a JSON file
+    # FIXME: Does this create the directory if it doesn't alredy exist?
     with open("./data/workouts_data.json", "w") as f:
         json.dump(data, f, indent=4)
 
