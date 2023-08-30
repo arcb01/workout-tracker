@@ -85,9 +85,14 @@ def preprocess():
     print("Succesfully workouts data generated.")
 
     # 3. Save it to a JSON file
-    # FIXME: This is not working
+    class DTEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, datetime):
+                return str(obj)
+            return json.JSONEncoder.default(self, obj)
+    
     with open("./data/workouts_data.json", "w") as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=4, cls=DTEncoder)
 
 
 if __name__ == "__main__":
