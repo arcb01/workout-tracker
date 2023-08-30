@@ -11,11 +11,12 @@ from mongo_utils import *
 
 def insert_data_db(db):
 
-    # FIXME: Update with the new pipeline
     # TODO: Updation phase: checking for duplicates
     # FIXME: Validation schema not working
 
-    w_data = generate_workouts_data()
+    # Read clean data
+    with open("./data/workouts_data.json", "r") as f:
+        w_data = json.load(f)
 
     wsns_collection = db["wsns"]
     exs_collection = db["exs"]
@@ -31,19 +32,6 @@ def insert_data_db(db):
 
 if __name__ == "__main__":
 
-    # ------ Load environment variables ------
-    load_dotenv()
-    config = dotenv_values("./.env/.env")
-
-    NOTION_TOKEN = config["NOTION_TOKEN"]
-    DATABASE_ID = "3badcbc40d434e00835bd09930f4a801"
-
-    headers = {
-        "Authorization": "Bearer " + NOTION_TOKEN,
-        "Content-Type": "application/json",
-        "Notion-Version": "2022-06-28",
-    }
-
     # Database connection
     client = MongoClient("mongodb://192.168.0.32:2717/")
     db = client["gym"]
@@ -53,7 +41,7 @@ if __name__ == "__main__":
     print(exs_collection.count_documents({}))
     print(wsns_collection.count_documents({}))
 
-    # 1. Create collection + validation schema
+    # 1. Create collection + FIXME validation schema
     create_collection(db, "exs")
     create_collection(db, "wsns")
 
