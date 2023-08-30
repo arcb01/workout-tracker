@@ -104,3 +104,5 @@ if __name__ == "__main__":
 
     # Run the preprocessing pipeline
     preprocess()
+
+    # FIXME: What if the data coming doesn't have the wokrout-exercise structure?
