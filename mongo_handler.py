@@ -2,6 +2,7 @@ from notion_utils import *
 import pprint
 import os 
 import random
+import pandas as pd
 import string
 from datetime import datetime
 from dotenv import load_dotenv, dotenv_values
@@ -10,7 +11,11 @@ from mongo_utils import *
 from preprocess import preprocess
 
 
-def update_db(db : object):
+client = MongoClient("mongodb://192.168.0.32:2717/")
+db = client["gym"]
+
+
+def update_db():
     """
     Inserts data into the database.
     """
@@ -43,13 +48,37 @@ def update_db(db : object):
 
     print("Data inserted successfully")
           
-if __name__ == "__main__":
 
-    # Database connection
-    client = MongoClient("mongodb://192.168.0.32:2717/")
-    db = client["gym"]
+def get_plot_data():
+    """
+    Returns the data to be plotted.
+    """
 
-    # Insert data
-    update_db(db)
+    # Number of workouts per month
+    query = [
+    {
+        '$project': {
+            'month': {'$month': {'date': {'$dateFromString': {'dateString': '$' + "date"}}}},
+        }
+    },
+    {
+        '$group': {
+            '_id': '$month',
+            'n_workouts': {'$sum': 1}
+        }
+    },
+    {
+        '$project': {
+            '_id': 0,  
+            'month': '$_id',  
+            'n_workouts': '$n_workouts' 
+        }
+    },
+    {
+        '$sort': {'month': 1}
+    }
+]
 
-    client.close()
+    results = list(db["wsns"].aggregate(query))
+
+    return results
