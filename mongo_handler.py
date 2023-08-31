@@ -1,4 +1,4 @@
-from modules.notion_utils import *
+from notion_utils import *
 import pprint
 import os 
 import random
@@ -7,16 +7,18 @@ from datetime import datetime
 from dotenv import load_dotenv, dotenv_values
 from pymongo import MongoClient
 from mongo_utils import *
+from preprocess import preprocess
 
 
-def insert_data_db(db : object):
+def update_db(db : object):
     """
     Inserts data into the database.
     """
-    
-    # TODO: Updation phase: checking for duplicates
-    
-    # 1. Read clean data
+
+    # 1. Get preprocessed data from notion
+    preprocess()
+
+    # 2. Read clean data
     with open("./data/workouts_data.json", "r") as f:
         w_data = json.load(f)
 
@@ -25,6 +27,11 @@ def insert_data_db(db : object):
     exs_collection = db["exs"]
 
     # 2. Insert data
+    # FIXME: (Maybe this part could be done in a better way)
+    # 2.1 Remove old data
+    wsns_collection.delete_many({})
+    exs_collection.delete_many({})
+    # 2.2 Insert new data
     for wokrout in w_data:
         workout_exercises = wokrout["exercises"]
         # Insert exercises into exs collection
@@ -34,7 +41,8 @@ def insert_data_db(db : object):
         wokrout["exercises"] = exs_ids.inserted_ids
         wsns_collection.insert_one(wokrout)
 
-
+    print("Data inserted successfully")
+          
 if __name__ == "__main__":
 
     # Database connection
@@ -42,6 +50,6 @@ if __name__ == "__main__":
     db = client["gym"]
 
     # Insert data
-    insert_data_db(db)
+    update_db(db)
 
     client.close()

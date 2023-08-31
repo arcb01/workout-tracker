@@ -1,5 +1,5 @@
 from dotenv import load_dotenv, dotenv_values
-from modules.notion_utils import *
+from notion_utils import *
 import json
 
 
@@ -102,8 +102,5 @@ def preprocess():
         json.dump(data, f, indent=4)
 
 
-if __name__ == "__main__":
-    # Run the preprocessing pipeline
-    preprocess()
 
-    # FIXME: What if the data coming doesn't have the wokrout-exercise structure?
+# FIXME: What if the data coming doesn't have the wokrout-exercise structure?
