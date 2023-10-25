@@ -18,5 +18,6 @@ This diagram shows how the application works.
 [![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://arcb01-workout-tracker-workout-dashboard-6u1ewl.streamlit.app/)
 
 ## Future work
-Version 2 in current development on a feature branch
+> [!NOTE]
+> Version 2 in current development on a feature branch
 
